@@ -1,5 +1,6 @@
 .NewNote form {
   padding-bottom: 15px;
+  margin-top: 50px;
 }
 
 .NewNote form textarea {

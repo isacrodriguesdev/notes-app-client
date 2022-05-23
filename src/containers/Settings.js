@@ -1,56 +1,46 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { API } from "aws-amplify";
-import { onError } from "../libs/errorLib";
-import config from "../config";
-import { Elements, StripeProvider } from "react-stripe-elements";
-import BillingForm from "../components/BillingForm";
-import "./Settings.css";
+import "./Settings.css"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { loadStripe } from '@stripe/stripe-js';
+import {
+  CardElement,
+  Elements,
+  useStripe,
+  useElements,
+} from '@stripe/react-stripe-js';
 
-export default function Settings() {
+const CheckoutForm = () => {
+  const stripe = useStripe();
+  const elements = useElements();
 
-  const history = useHistory();
-  const [isLoading, setIsLoading] = useState(false);
-  const [stripe, setStripe] = useState(null);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  useEffect(() => {
-    setStripe(window.Stripe(config.STRIPE_KEY));
-  }, []);
-
-  function billUser(details) {
-    return API.post("notes", "/billing", {
-      body: details
-    });
-  }
-
-  async function handleFormSubmit(storage, { token, error
-  }) {
-    if (error) {
-      onError(error);
+    if (elements == null) {
       return;
     }
-    setIsLoading(true);
-    try {
-      await billUser({
-        storage,
-        source: token.id
-      });
-      alert("Your card has been charged successfully!");
-      history.push("/");
-    } catch (e) {
-      onError(e);
-      setIsLoading(false);
-    }
-  }
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: elements.getElement(CardElement),
+    });
+
+    console.log(error, paymentMethod, event)
+  };
 
   return (
     <div className="Settings">
-      <StripeProvider stripe={stripe}>
-        <Elements>
-          <BillingForm isLoading={isLoading} onSubmit=
-            {handleFormSubmit} />
-        </Elements>
-      </StripeProvider>
+      <form onSubmit={handleSubmit}>
+        <label style={{ marginBottom: 10 }} for="exampleInputEmail1">Storage</label>
+        <input type="number" className="form-control" id="storage"  />
+        <div style={{ marginTop: 20 }} />
+        <CardElement />
+        <button className="btn btn-secondary btn-pay" type="submit" disabled={!stripe || !elements}>
+          Pay
+        </button>
+      </form>
     </div>
   );
-}
+};
+
+export default CheckoutForm

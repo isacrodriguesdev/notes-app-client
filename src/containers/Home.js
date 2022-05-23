@@ -6,12 +6,13 @@ import { LinkContainer } from "react-router-bootstrap";
 import { API } from "@aws-amplify/api";
 import { onError } from "../libs/errorLib";
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 export default function Home() {
 
   const { isAuthenticated, user, token } = useAppContext();
 
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState([{ content: "Hello world!", noteId: 0 }]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -41,27 +42,31 @@ export default function Home() {
   }
 
   function renderNotesList(notes) {
-    return notes.map((note, i) => i > 0 ?
-      (
-        <LinkContainer key={note.noteId} to=
-          {`/notes/${note.noteId}`}>
-          <ListGroupItem header=
-            {note.content.trim().split("\n")[0]}>
-            {"Created: " + new
-              Date(note.createdAt).toLocaleString()}
-          </ListGroupItem>
-        </LinkContainer>
+
+    if (notes && notes.lenght > 0) {
+      return notes.map((note, i) => {
+        return (
+          <LinkContainer key={note.noteId} to=
+            {`/notes/${note.noteId}`}>
+            <ListGroupItem header={note.content.trim().split("\n")[0]}>
+              {"Created: " + new Date(note.createdAt).toLocaleString()}
+            </ListGroupItem>
+          </LinkContainer>
+        )
+      })
+    } else {
+      return (
+        <div>
+          <Link key="new" to="/notes/new">
+            <ListGroupItem>
+              <h4>
+                <b>{"\uFF0B"}</b> Create a new note
+              </h4>
+            </ListGroupItem>
+          </Link>
+        </div>
       )
-      : (
-        <LinkContainer key="new" to="/notes/new">
-          <ListGroupItem>
-            <h4>
-              <b>{"\uFF0B"}</b> Create a new note
-            </h4>
-          </ListGroupItem>
-        </LinkContainer>
-      )
-    );
+    }
   }
 
   function renderLander() {
@@ -78,7 +83,7 @@ export default function Home() {
       <div className="notes">
         <PageHeader>Your Notes</PageHeader>
         <ListGroup>
-          {/* {!isLoading && renderNotesList(notes)} */}
+          {!isLoading && renderNotesList(notes)}
         </ListGroup>
       </div>
     );

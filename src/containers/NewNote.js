@@ -23,8 +23,7 @@ export default function NewNote() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    if (file.current && file.current.size >
-      config.MAX_ATTACHMENT_SIZE) {
+    if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
       alert(
         `Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE / 1000000
         } MB.`
@@ -39,7 +38,7 @@ export default function NewNote() {
       await createNote({ content, attachment });
       history.push("/");
     } catch (e) {
-      onError(e);
+      console.log(e)
       setIsLoading(false);
     }
   }

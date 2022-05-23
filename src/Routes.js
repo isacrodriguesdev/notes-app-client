@@ -11,8 +11,14 @@ import AuthenticatedRoute from
   "./components/AuthenticatedRoute";
 import UnauthenticatedRoute from
   "./components/UnauthenticatedRoute";
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
 
 export default function Routes() {
+
+
   return (
     <Switch>
       <UnauthenticatedRoute exact path="/login">
@@ -22,7 +28,9 @@ export default function Routes() {
         <Signup />
       </UnauthenticatedRoute>
       <AuthenticatedRoute exact path="/settings">
-        <Settings />
+        <Elements stripe={stripePromise}>
+          <Settings />
+        </Elements>
       </AuthenticatedRoute>
       <AuthenticatedRoute exact path="/">
         <Home />

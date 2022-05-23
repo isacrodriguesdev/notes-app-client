@@ -13,5 +13,6 @@ export default {
     USER_POOL_ID: "us-east-1_WWb9WhSLl",
     APP_CLIENT_ID: "2k4a5lv6s439uu0im8cb3l8h2q",
     IDENTITY_POOL_ID: "us-east-1:aab0d4fb-3bcb-4699-9518-a9dcb01ca97f",
-  }
+  },
+  STRIPE_KEY: ""
 };
