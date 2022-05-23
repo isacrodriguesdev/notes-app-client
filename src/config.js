@@ -37,7 +37,8 @@ const prod = {
 
 const config = process.env.REACT_APP_STAGE === 'prod' ? prod : dev;
 
+// eslint-disable-next-line
 export default {
+  ...config,
   MAX_ATTACHMENT_SIZE: 5000000,
-  ...config
-};
+}

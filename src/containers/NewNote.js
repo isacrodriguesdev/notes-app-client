@@ -5,7 +5,6 @@ import { FormGroup, FormControl, ControlLabel } from
 import LoaderButton from "../components/LoaderButton";
 import { API } from "aws-amplify";
 import { s3Upload } from "../libs/awsLib";
-import { onError } from "../libs/errorLib";
 import config from "../config";
 import "./NewNote.css";
 

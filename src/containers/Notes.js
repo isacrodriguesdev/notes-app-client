@@ -110,9 +110,9 @@ export default function Notes() {
     setIsDeleting(true);
   }
 
-  function deleteNote() {
-    return API.del("notes", `/notes/${id}`);
-  }
+  // function deleteNote() {
+  //   return API.del("notes", `/notes/${id}`);
+  // }
 
   return (
     <div className="Notes">

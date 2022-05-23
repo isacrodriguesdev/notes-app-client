@@ -38,11 +38,6 @@ function App() {
     setIsAuthenticating(false);
   }
 
-  async function handleLogout() {
-    await Auth.signOut();
-    userHasAuthenticated(false);
-  }
-
   return (
     !isAuthenticating &&
     <div className="App container">
