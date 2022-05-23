@@ -22,7 +22,9 @@ export default function NewNote() {
   }
 
   async function handleSubmit(event) {
+
     event.preventDefault();
+
     if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
       alert(
         `Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE / 1000000
@@ -30,14 +32,18 @@ export default function NewNote() {
       );
       return;
     }
+
     setIsLoading(true);
+
     try {
 
       const attachment = file.current ? await s3Upload(file.current) : null;
 
       await createNote({ content, attachment });
       history.push("/");
+
     } catch (e) {
+
       console.log(e)
       setIsLoading(false);
     }
@@ -45,7 +51,6 @@ export default function NewNote() {
 
   function createNote(note) {
 
-    // aws
     return API.post("notes", "/notes", {
       body: note
     });
@@ -55,17 +60,20 @@ export default function NewNote() {
   return (
     <div className="NewNote">
       <form onSubmit={handleSubmit}>
+
         <FormGroup controlId="content">
           <FormControl
             value={content}
-            componentClass="textarea" onChange={e => setContent(e.target.value)}
+            componentClass="textarea"
+            onChange={e => setContent(e.target.value)}
           />
         </FormGroup>
+
         <FormGroup controlId="file">
           <ControlLabel>Attachment</ControlLabel>
-          <FormControl onChange={handleFileChange}
-            type="file" />
+          <FormControl onChange={handleFileChange} type="file" />
         </FormGroup>
+
         <LoaderButton
           block
           type="submit"
@@ -76,6 +84,7 @@ export default function NewNote() {
         >
           Create
         </LoaderButton>
+
       </form>
     </div>
   );

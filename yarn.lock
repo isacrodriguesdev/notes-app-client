@@ -56,7 +56,7 @@
     "@aws-amplify/core" "4.5.4"
     axios "0.21.4"
 
-"@aws-amplify/api@4.0.40", "@aws-amplify/api@^4.0.40":
+"@aws-amplify/api@4.0.40":
   version "4.0.40"
   resolved "https://registry.yarnpkg.com/@aws-amplify/api/-/api-4.0.40.tgz#4c9ecfadfa0d4e5a14493fa43fb97b33b6c17ea2"
   integrity sha512-p3DwUQitYGVW8+XKQPTJL/WHi25iotuidDWnzu2YL7LpJdRgfbH3Jxui5XDJKKgE918ihsYBPxOyXn9b+tVF9A==

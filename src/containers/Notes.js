@@ -26,19 +26,23 @@ export default function Notes() {
 
     async function onLoad() {
       try {
+
         const note = await loadNote();
         const { content, attachment } = note;
+
         if (attachment) {
-          note.attachmentURL = await
-            Storage.vault.get(attachment);
+          note.attachmentURL = await Storage.vault.get(/* get by filename */ attachment);
         }
+
         setContent(content);
         setNote(note);
       } catch (e) {
-        onError(e);
+        console.log(e)
       }
     }
+
     onLoad();
+
   }, [id]);
 
   function saveNote(note) {

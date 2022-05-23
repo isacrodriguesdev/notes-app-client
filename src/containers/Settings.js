@@ -1,15 +1,14 @@
 import "./Settings.css"
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { loadStripe } from '@stripe/stripe-js';
+import React, { useState } from 'react';
 import {
   CardElement,
-  Elements,
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
 
-const CheckoutForm = () => {
+function Settings() {
+
+  const [textStorage, setTextStorage] = useState("")
   const stripe = useStripe();
   const elements = useElements();
 
@@ -32,7 +31,8 @@ const CheckoutForm = () => {
     <div className="Settings">
       <form onSubmit={handleSubmit}>
         <label style={{ marginBottom: 10 }} for="exampleInputEmail1">Storage</label>
-        <input type="number" className="form-control" id="storage"  />
+        <input type="number" className="form-control" id="storage" value={textStorage}
+          onChange={e => setTextStorage(e.target.value)} />
         <div style={{ marginTop: 20 }} />
         <CardElement />
         <button className="btn btn-secondary btn-pay" type="submit" disabled={!stripe || !elements}>
@@ -43,4 +43,4 @@ const CheckoutForm = () => {
   );
 };
 
-export default CheckoutForm
+export default Settings

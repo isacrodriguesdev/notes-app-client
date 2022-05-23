@@ -33,10 +33,7 @@ export default function Login() {
     setIsLoading(true);
 
     try {
-
-      const result = await Auth.signIn(fields.email, fields.password);
-      console.log(result)
-
+      await Auth.signIn(fields.email, fields.password);
       userHasAuthenticated(true);
       history.push("/");
     } catch (e) {

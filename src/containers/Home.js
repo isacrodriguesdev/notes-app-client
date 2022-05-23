@@ -3,16 +3,16 @@ import { PageHeader, ListGroup, ListGroupItem } from
   "react-bootstrap";
 import { useAppContext } from "../libs/contextLib";
 import { LinkContainer } from "react-router-bootstrap";
-import { API } from "@aws-amplify/api";
+import { API } from "aws-amplify";
 import { onError } from "../libs/errorLib";
 import "./Home.css";
 import { Link } from "react-router-dom";
 
 export default function Home() {
 
-  const { isAuthenticated, user, token } = useAppContext();
+  const { isAuthenticated } = useAppContext();
 
-  const [notes, setNotes] = useState([{ content: "Hello world!", noteId: 0 }]);
+  const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -25,11 +25,19 @@ export default function Home() {
 
       try {
         const notes = await loadNotes();
-        setNotes(notes);
+        console.log(notes)
+        setNotes(notes); // add
       } catch (e) {
         console.log(e);
-        // onError(e);
       }
+
+      // // remove >
+      // setNotes([{
+      //   content: "Hello world!",
+      //   noteId: "7e8bcb90-fb34-461c-a90a-97c42b888a46",
+      //   createdAt: new Date()
+      // }]); // < remove
+
       setIsLoading(false);
     }
 
@@ -37,34 +45,33 @@ export default function Home() {
 
   }, [isAuthenticated]);
 
-  function loadNotes() {
-    return API.get("notes", "/notes");
+  async function loadNotes() {
+    return await API.get("notes", "/notes");
   }
 
   function renderNotesList(notes) {
 
-    if (notes && notes.lenght > 0) {
+    console.log(notes)
+    if (notes && notes.length > 0) {
       return notes.map((note, i) => {
         return (
-          <LinkContainer key={note.noteId} to=
-            {`/notes/${note.noteId}`}>
+          <Link key={note.noteId} to={`/notes/${note.noteId}`}>
             <ListGroupItem header={note.content.trim().split("\n")[0]}>
-              {"Created: " + new Date(note.createdAt).toLocaleString()}
+              {"Created: " + note.createdAt}
             </ListGroupItem>
-          </LinkContainer>
+          </Link>
         )
       })
     } else {
       return (
-        <div>
-          <Link key="new" to="/notes/new">
-            <ListGroupItem>
-              <h4>
-                <b>{"\uFF0B"}</b> Create a new note
-              </h4>
-            </ListGroupItem>
-          </Link>
-        </div>
+        <Link key="new" to="/notes/new">
+          <ListGroupItem>
+            <h4>
+              <b>{"\uFF0B"}</b> Create a new note
+            </h4>
+          </ListGroupItem>
+        </Link>
+
       )
     }
   }
@@ -84,6 +91,7 @@ export default function Home() {
         <PageHeader>Your Notes</PageHeader>
         <ListGroup>
           {!isLoading && renderNotesList(notes)}
+          {/* {renderNotesList(notes)} */}
         </ListGroup>
       </div>
     );

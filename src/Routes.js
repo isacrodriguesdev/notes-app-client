@@ -13,8 +13,9 @@ import UnauthenticatedRoute from
   "./components/UnauthenticatedRoute";
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from "@stripe/stripe-js";
+import config from "./config";
 
-const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+const stripePromise = loadStripe(config.STRIPE_KEY);
 
 export default function Routes() {
 
