@@ -15,7 +15,6 @@ export default function Notes() {
   const [note, setNote] = useState(null);
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
 
@@ -78,9 +77,9 @@ export default function Notes() {
 
     try {
 
-      // if (file.current) {
-      //   attachment = await s3Upload(file.current);
-      // }
+      if (file.current) {
+        attachment = await s3Upload(file.current);
+      }
 
       await saveNote({
         content,
@@ -164,7 +163,7 @@ export default function Notes() {
             bsSize="large"
             bsStyle="danger"
             onClick={handleDelete}
-            isLoading={isDeleting}
+            isLoading={false}
           >
             Delete
           </LoaderButton>
