@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { API, Storage } from "aws-amplify";
-import { onError } from "../libs/errorLib";
 import { ControlLabel, FormControl, FormGroup } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import config from "../config";
@@ -79,20 +78,20 @@ export default function Notes() {
 
     try {
 
-      if (file.current) {
-        attachment = await s3Upload(file.current);
-      }
+      // if (file.current) {
+      //   attachment = await s3Upload(file.current);
+      // }
 
       await saveNote({
         content,
-        attachment: attachment || note.attachment
+        attachment: false || note.attachment
       });
 
       history.push("/");
 
     } catch (e) {
 
-      onError(e);
+      console.log(e)
       setIsLoading(false);
     }
   }
@@ -108,11 +107,13 @@ export default function Notes() {
       return;
     }
     setIsDeleting(true);
+    await deleteNote()
+    setIsDeleting(false);
   }
 
-  // function deleteNote() {
-  //   return API.del("notes", `/notes/${id}`);
-  // }
+  function deleteNote() {
+    return API.del("notes", `/notes/${id}`);
+  }
 
   return (
     <div className="Notes">
