@@ -33,9 +33,9 @@ export default function NewNote() {
     }
 
     setIsLoading(true);
+    console.log(file.current)
 
     try {
-
       const attachment = file.current ? await s3Upload(file.current) : null;
 
       await createNote({ content, attachment });
@@ -79,8 +79,7 @@ export default function NewNote() {
           bsSize="large"
           bsStyle="primary"
           isLoading={isLoading}
-          disabled={!validateForm()}
-        >
+          disabled={!validateForm()}>
           Create
         </LoaderButton>
 

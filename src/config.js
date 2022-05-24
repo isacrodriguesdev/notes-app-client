@@ -2,17 +2,17 @@
 const dev = {
   s3: {
     REGION: "us-east-1",
-    BUCKET: "arn:aws:s3:::demo-aws-lambda-dev-attachmentsbucket-19738emw6zr4s"
+    BUCKET: "clickfiscal-notes-app-uploads"
   },
   apiGateway: {
     REGION: "us-east-1",
-    URL: "https://ljkwtp0nhk.execute-api.us-east-1.amazonaws.com/dev"
+    URL: "https://xsqk6laefj.execute-api.us-east-1.amazonaws.com/dev"
   },
   cognito: {
     REGION: "us-east-1",
-    USER_POOL_ID: "us-east-1_WWb9WhSLl",
-    APP_CLIENT_ID: "2k4a5lv6s439uu0im8cb3l8h2q",
-    IDENTITY_POOL_ID: "us-east-1:aab0d4fb-3bcb-4699-9518-a9dcb01ca97f",
+    USER_POOL_ID: "us-east-1_8AO03Q25U",
+    APP_CLIENT_ID: "1sjj10d8qfqsbd88ev560tobi0",
+    IDENTITY_POOL_ID: "us-east-1:cdb6dd13-0e88-413e-be3b-a84e1518129d",
   },
   STRIPE_KEY: "pk_test_6pRNASCoBOKtIshFeQd4XMUh",
 };

@@ -106,9 +106,9 @@ export default function Notes() {
     if (!confirmed) {
       return;
     }
-    setIsDeleting(true);
+
     await deleteNote()
-    setIsDeleting(false);
+    history.push("/");
   }
 
   function deleteNote() {
