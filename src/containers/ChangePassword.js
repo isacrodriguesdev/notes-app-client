@@ -65,6 +65,7 @@ export default class ChangePassword extends Component {
               onChange={this.handleChange}
               value={this.state.oldPassword}
             />
+
           </FormGroup><hr />
 
           <FormGroup bsSize="large" controlId="password">
@@ -88,9 +89,7 @@ export default class ChangePassword extends Component {
 
           </FormGroup>
 
-          <button type="submit" className="btn btn-primary"
-            disabled={!this.validateForm()}
-          >
+          <button type="submit" className="btn btn-primary" disabled={!this.validateForm()}>
             Change Password
           </button>
         </form>
