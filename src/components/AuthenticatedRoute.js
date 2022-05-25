@@ -9,12 +9,7 @@ export default function AuthenticatedRoute({ children, ...rest }) {
 
   return (
     <Route {...rest}>
-      {isAuthenticated ? (
-        children
-      ) : (
-        <Redirect to={
-          `/login?redirect=${pathname}${search}`
-        } />)}
+      {isAuthenticated ? children : <Redirect to={`/login?redirect=${pathname}${search}`} />}
     </Route>
   );
 

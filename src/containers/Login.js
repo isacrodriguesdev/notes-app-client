@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FormGroup, FormControl, ControlLabel } from
   "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
@@ -19,7 +19,7 @@ export default function Login() {
 
   const [fields, handleFieldChange] = useFormFields({
     email: "isacrodriguesdev@protonmail.com",
-    password: "@DemoAWS10"
+    password: "CpfdUg3Mbux5Ng$*5cs6kx*wG#CM"
   });
 
   function validateForm() {
@@ -65,6 +65,8 @@ export default function Login() {
             onChange={handleFieldChange}
           />
         </FormGroup>
+
+        <Link to="/login/reset">Forgot password?</Link>
 
         <LoaderButton
           block
