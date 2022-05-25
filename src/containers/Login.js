@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 import { Link, useHistory } from "react-router-dom";
-import { FormGroup, FormControl, ControlLabel } from
-  "react-bootstrap";
+import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useAppContext } from "../libs/contextLib";
 import { useFormFields } from "../libs/hooksLib";
-import { onError } from "../libs/errorLib";
 import "./Login.css";
 
 export default function Login() {
@@ -18,8 +16,8 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [fields, handleFieldChange] = useFormFields({
-    email: "isacrodriguesdev@protonmail.com",
-    password: "CpfdUg3Mbux5Ng$*5cs6kx*wG#CM"
+    email: "yatogamidev@gmail.com",
+    password: "4e@NAt@Z24u3z6gXAsG9T^L7XkdT"
   });
 
   function validateForm() {
@@ -38,7 +36,10 @@ export default function Login() {
       history.push("/");
     } catch (e) {
 
-      onError(e);
+      if (e.code === "UserNotConfirmedException") {
+        history.push("/account/confirmation-code", { ...fields });
+      }
+
       setIsLoading(false);
     }
   }

@@ -17,6 +17,7 @@ import config from "./config";
 import ResetPassword from "./containers/ResetPassword";
 import ChangePassword from "./containers/ChangePassword";
 import ChangeEmail from "./containers/ChangeEmail";
+import ConfirmationCode from "./containers/ConfirmationCode";
 
 const stripePromise = loadStripe(config.STRIPE_KEY);
 
@@ -30,6 +31,10 @@ export default function Routes() {
 
       <UnauthenticatedRoute exact path="/signup">
         <Signup />
+      </UnauthenticatedRoute>
+
+      <UnauthenticatedRoute exact path="/account/confirmation-code">
+        <ConfirmationCode />
       </UnauthenticatedRoute>
 
       <UnauthenticatedRoute exact path="/login/reset">

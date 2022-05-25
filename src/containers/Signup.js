@@ -16,7 +16,8 @@ import { Auth } from "aws-amplify";
 export default function Signup() {
 
   const [fields, handleFieldChange] = useFormFields({
-    email: "", password: "",
+    email: "",
+    password: "",
     confirmPassword: "",
     confirmationCode: "",
   });
@@ -47,8 +48,10 @@ export default function Signup() {
         username: fields.email,
         password: fields.password,
       });
+
       setIsLoading(false);
       setNewUser(newUser);
+
     } catch (e) {
       onError(e);
       setIsLoading(false);
@@ -76,16 +79,14 @@ export default function Signup() {
       <form onSubmit={handleConfirmationSubmit}>
         <FormGroup controlId="confirmationCode"
           bsSize="large">
-          <ControlLabel>Confirmation
-            Code</ControlLabel>
+          <ControlLabel>Confirmation Code</ControlLabel>
           <FormControl
             autoFocus
             type="tel"
             onChange={handleFieldChange}
             value={fields.confirmationCode}
           />
-          <HelpBlock>Please check your email for the
-            code.</HelpBlock>
+          <HelpBlock>Please check your email for the code.</HelpBlock>
         </FormGroup>
         <LoaderButton
           block
@@ -95,7 +96,8 @@ export default function Signup() {
           disabled={!validateConfirmationForm()}
         >
           Verify
-        </LoaderButton></form>
+        </LoaderButton>
+      </form>
     );
   }
 
@@ -142,8 +144,7 @@ export default function Signup() {
 
   return (
     <div className="Signup">
-      {newUser === null ? renderForm() :
-        renderConfirmationForm()}
+      {newUser === null ? renderForm() : renderConfirmationForm()}
     </div>
   );
 }
