@@ -130,11 +130,9 @@ export default function Notes() {
             <FormGroup>
               <ControlLabel>Attachment</ControlLabel>
               <FormControl.Static>
-                <a
-                  target="_blank"
+                <a target="_blank"
                   rel="noopener noreferrer"
-                  href={note.attachmentURL}
-                >
+                  href={note.attachmentURL}>
                   {formatFilename(note.attachment)}
                 </a>
               </FormControl.Static>
@@ -142,10 +140,8 @@ export default function Notes() {
           )}
 
           <FormGroup controlId="file">
-            {!note.attachment &&
-              <ControlLabel>Attachment</ControlLabel>}
-            <FormControl onChange={handleFileChange}
-              type="file" />
+            {!note.attachment && <ControlLabel>Attachment</ControlLabel>}
+            <FormControl onChange={handleFileChange} type="file" />
           </FormGroup>
 
           <LoaderButton
@@ -163,8 +159,7 @@ export default function Notes() {
             bsSize="large"
             bsStyle="danger"
             onClick={handleDelete}
-            isLoading={false}
-          >
+            isLoading={false}>
             Delete
           </LoaderButton>
         </form>

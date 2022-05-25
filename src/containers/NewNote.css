@@ -4,6 +4,15 @@
 }
 
 .NewNote form textarea {
+  margin-bottom: 4px;
   height: 300px;
   font-size: 24px;
+}
+
+.NewNote .form-group {
+  margin: 20px 0;
+}
+
+.NewNote .form-group label {
+  margin-bottom: 10px;
 }

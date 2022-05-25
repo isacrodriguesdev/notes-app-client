@@ -24,17 +24,10 @@ export default function Home() {
       try {
         const notes = await loadNotes();
         console.log(notes)
-        setNotes(notes); // add
+        setNotes(notes);
       } catch (e) {
         console.log(e);
       }
-
-      // // remove >
-      // setNotes([{
-      //   content: "Hello world!",
-      //   noteId: "7e8bcb90-fb34-461c-a90a-97c42b888a46",
-      //   createdAt: new Date()
-      // }]); // < remove
 
       setIsLoading(false);
     }
@@ -55,7 +48,7 @@ export default function Home() {
         return (
           <Link key={note.noteId} to={`/notes/${note.noteId}`}>
             <ListGroupItem header={note.content.trim().split("\n")[0]}>
-              {"Created: " + note.createdAt}
+              {"Created: " + new Date(note.createdAt)}
             </ListGroupItem>
           </Link>
         )
@@ -87,9 +80,9 @@ export default function Home() {
     return (
       <div className="notes">
         <PageHeader>Your Notes</PageHeader>
+
         <ListGroup>
           {!isLoading && renderNotesList(notes)}
-          {/* {renderNotesList(notes)} */}
         </ListGroup>
       </div>
     );
