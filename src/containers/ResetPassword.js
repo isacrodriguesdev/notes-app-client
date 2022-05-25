@@ -8,6 +8,7 @@ import {
   FormControl,
   ControlLabel
 } from "react-bootstrap";
+
 import "./ResetPassword.css";
 
 export default class ResetPassword extends Component {
@@ -114,8 +115,9 @@ export default class ResetPassword extends Component {
     return (
       <form onSubmit={this.handleConfirmClick}>
         <FormGroup bsSize="large" controlId="code">
-          <ControlLabel>Confirmation
-            Code</ControlLabel>
+
+          <ControlLabel>Confirmation Code</ControlLabel>
+
           <FormControl
             autoFocus
             type="tel"
@@ -128,6 +130,7 @@ export default class ResetPassword extends Component {
             code.
           </HelpBlock></FormGroup>
         <hr />
+
         <FormGroup bsSize="large" controlId="password">
           <ControlLabel>New Password</ControlLabel>
           <FormControl
@@ -176,7 +179,7 @@ export default class ResetPassword extends Component {
     return (
       <div className="ResetPassword">
         {!this.state.codeSent ? this.renderRequestCodeForm() : !this.state.confirmed
-            ? this.renderConfirmationForm() : this.renderSuccessMessage()}
+          ? this.renderConfirmationForm() : this.renderSuccessMessage()}
       </div>
     );
   }
