@@ -6,6 +6,7 @@ import LoaderButton from "../components/LoaderButton";
 import { useAppContext } from "../libs/contextLib";
 import { useFormFields } from "../libs/hooksLib";
 import "./Login.css";
+import { onError } from "../libs/errorLib";
 
 export default function Login() {
 
@@ -17,7 +18,7 @@ export default function Login() {
 
   const [fields, handleFieldChange] = useFormFields({
     email: "yatogamidev@gmail.com",
-    password: "4e@NAt@Z24u3z6gXAsG9T^L7XkdT"
+    password: "4e@NAt@Z24u3z6gXAsG9T^L7XkdT="
   });
 
   function validateForm() {
@@ -38,6 +39,8 @@ export default function Login() {
 
       if (e.code === "UserNotConfirmedException") {
         history.push("/account/confirmation-code", { ...fields });
+      } else {
+        onError(e)
       }
 
       setIsLoading(false);
