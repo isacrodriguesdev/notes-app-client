@@ -1,15 +1,11 @@
-.btn-pay {
-  margin-top: 50px;
-  padding: 10px 50px;
-}
-
 @media all and (min-width: 480px) {
   .Settings {
     padding: 60px 0;
-  }
-
-  .Settings form {
     margin: 0 auto;
-    max-width: 480px;
+    max-width: 320px;
   }
+}
+
+.Settings button:last-child {
+  margin-top: 15px;
 }

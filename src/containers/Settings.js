@@ -1,46 +1,40 @@
-import "./Settings.css"
-import React, { useState } from 'react';
-import {
-  CardElement,
-  useStripe,
-  useElements,
-} from '@stripe/react-stripe-js';
+import React, { Component } from "react";
+import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
+import LoaderButton from "../components/LoaderButton";
+import "./Settings.css";
 
-function Settings() {
+export default class Settings extends Component {
 
-  const [textStorage, setTextStorage] = useState("")
-  const stripe = useStripe();
-  const elements = useElements();
+  constructor(props) {
+    super(props);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+    this.state = {};
+  }
 
-    if (elements == null) {
-      return;
-    }
+  render() {
+    return (
+      <div className="Settings">
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: elements.getElement(CardElement),
-    });
+        <Link to="/settings/email">
+          <LoaderButton block
+            bsSize="large"
+            text="Change Email"
+          >
+            Change Email
+          </LoaderButton>
+        </Link>
 
-    console.log(error, paymentMethod, event)
-  };
 
-  return (
-    <div className="Settings">
-      <form onSubmit={handleSubmit}>
-        <label style={{ marginBottom: 10 }} for="exampleInputEmail1">Storage</label>
-        <input type="number" className="form-control" id="storage" value={textStorage}
-          onChange={e => setTextStorage(e.target.value)} />
-        <div style={{ marginTop: 20 }} />
-        <CardElement />
-        <button className="btn btn-secondary btn-pay" type="submit" disabled={!stripe || !elements}>
-          Pay
-        </button>
-      </form>
-    </div>
-  );
-};
+        <Link to="/settings/password">
+          <LoaderButton block
+            bsSize="large"
+            text="Change Password">
+            Change Password
+          </LoaderButton>
+        </Link>
 
-export default Settings
+      </div>
+    );
+  }
+}

@@ -63,7 +63,7 @@ export default function NewNote() {
         <FormGroup controlId="content">
           <FormControl
             value={content}
-            componentClass="textarea"
+            componentclassName="textarea"
             onChange={e => setContent(e.target.value)}
           />
         </FormGroup>

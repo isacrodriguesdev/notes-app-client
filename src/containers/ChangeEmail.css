@@ -1,0 +1,30 @@
+@media all and (min-width: 480px) {
+  .ChangeEmail {
+    padding: 60px 0;
+  }
+
+  .ChangeEmail form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
+
+
+.ChangeEmail form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ChangeEmail form div {
+  padding: 10px 0;
+}
+
+.ChangeEmail form button {
+  background-color: #0d6efd;
+  color: white;
+  margin-top: 20px;
+}
+
+.ChangeEmail form label {
+  margin-bottom: 10px;
+}

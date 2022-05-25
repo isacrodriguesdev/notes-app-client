@@ -15,6 +15,8 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from "@stripe/stripe-js";
 import config from "./config";
 import ResetPassword from "./containers/ResetPassword";
+import ChangePassword from "./containers/ChangePassword";
+import ChangeEmail from "./containers/ChangeEmail";
 
 const stripePromise = loadStripe(config.STRIPE_KEY);
 
@@ -33,6 +35,14 @@ export default function Routes() {
       <UnauthenticatedRoute exact path="/login/reset">
         <ResetPassword />
       </UnauthenticatedRoute>
+
+      <AuthenticatedRoute exact path="/settings/password">
+        <ChangePassword />
+      </AuthenticatedRoute>
+
+      <AuthenticatedRoute exact path="/settings/email">
+        <ChangeEmail />
+      </AuthenticatedRoute>
 
       <AuthenticatedRoute exact path="/settings">
         <Elements stripe={stripePromise}>
