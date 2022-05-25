@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import LoaderButton from "../components/LoaderButton";
 import "./Settings.css";
