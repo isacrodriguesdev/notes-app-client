@@ -24,7 +24,6 @@ function ConfirmationCode() {
 
   useState(() => {
 
-    console.log(location.state.email)
     resendConfirmationCode(location.state.email)
 
   }, []);
