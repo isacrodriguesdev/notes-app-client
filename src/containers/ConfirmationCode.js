@@ -77,8 +77,7 @@ function ConfirmationCode() {
           type="submit"
           bsSize="large"
           isLoading={isLoading}
-          disabled={!validateConfirmationForm()}
-        >
+          disabled={!validateConfirmationForm()}>
           Verify
         </LoaderButton>
       </form>

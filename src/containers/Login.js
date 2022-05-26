@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Auth } from "aws-amplify";
+import React, { useEffect, useState } from "react";
+import { Auth, Hub } from "aws-amplify";
 import { Link, useHistory } from "react-router-dom";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
@@ -12,8 +12,10 @@ export default function Login() {
 
   const history = useHistory();
 
-  const { userHasAuthenticated } = useAppContext();
+  // eslint-disable-next-line
+  const [user, setUser] = useState(null);
 
+  const { userHasAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
 
   const [fields, handleFieldChange] = useFormFields({
@@ -45,6 +47,38 @@ export default function Login() {
 
       setIsLoading(false);
     }
+  }
+
+  useEffect(() => {
+
+    Hub.listen('auth', ({ payload: { event, data } }) => {
+
+      console.log("auth", event.at, data)
+
+      // eslint-disable-next-line
+      switch (event) {
+        case 'signIn':
+        case 'cognitoHostedUI':
+          getUser().then(userData => setUser(userData));
+          break;
+        case 'signOut':
+          setUser(null);
+          break;
+        case 'signIn_failure':
+        case 'cognitoHostedUI_failure':
+          console.log('Sign in failure', data);
+          break;
+      }
+    });
+
+    getUser().then(userData => setUser(userData));
+
+  }, []);
+
+  function getUser() {
+    return Auth.currentAuthenticatedUser()
+      .then(userData => userData)
+      .catch(() => console.log('Not signed in'));
   }
 
 
@@ -81,6 +115,24 @@ export default function Login() {
         >
           Login
         </LoaderButton>
+
+        <hr />
+
+        <LoaderButton
+          onClick={async () => {
+            try {
+              await Auth.federatedSignIn({ provider: "facebook" })
+            } catch (error) {
+              console.log(error);
+            }
+          }}
+          block
+          type="button"
+          bsSize="large"
+        >
+          Login with facebook
+        </LoaderButton>
+
       </form>
     </div>
   );

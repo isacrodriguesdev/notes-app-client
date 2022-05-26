@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { AppContext } from "./libs/contextLib";
 import "./App.css";
 import Routes from "./Routes";
+import config from "./config";
 
 function App() {
 
@@ -19,10 +20,13 @@ function App() {
   }
 
   useEffect(() => {
-    onLoad();
+    onLoad(); // eslint-disable-next-line
   }, []);
 
   async function onLoad() {
+
+    loadFacebookSDK();
+
     try {
 
       const result = await Auth.currentSession();
@@ -36,6 +40,26 @@ function App() {
       }
     }
     setIsAuthenticating(false);
+  }
+
+  function loadFacebookSDK() {
+
+    window.fbAsyncInit = function () {
+      window.FB.init({
+        appId: config.social.FB,
+        autoLogAppEvents: true,
+        xfbml: true,
+        version: 'v3.1'
+      });
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
   }
 
   return (
@@ -57,7 +81,7 @@ function App() {
             {
               isAuthenticated ? <>
                 <div className="d-flex align-items-center">
-                <button type="button" className="btn btn-link px-3 me-2">
+                  <button type="button" className="btn btn-link px-3 me-2">
                     <Link to="/notes/new">
                       New Notes
                     </Link>

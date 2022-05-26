@@ -14,6 +14,9 @@ const dev = {
     APP_CLIENT_ID: "6gj5t94o8hjs22mo19krdgbij9",
     IDENTITY_POOL_ID: "us-east-1:47933944-e3cc-4d31-b1aa-695c18890b77",
   },
+  social: {
+    FB: "1279966899199659"
+  }
 };
 
 const prod = {
@@ -31,7 +34,11 @@ const prod = {
     APP_CLIENT_ID: "7ru7v8e4s9inlke4prb2sji1n",
     IDENTITY_POOL_ID: "us-east-1:84c7bb1c-97ba-4da5-bf01-4dcec6bdbded",
   },
+  social: {
+    FB: "1279966899199659"
+  }
 };
+
 
 const config = process.env.REACT_APP_STAGE === 'prod' ? prod : dev;
 
