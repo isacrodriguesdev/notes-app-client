@@ -1,19 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-notesapp-dev-91036-authRole",
-      "UnauthRoleArn": "arn:aws:iam::568855711594:role/amplify-notesapp-dev-91036-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::568855711594:role/amplify-notesapp-dev-91036-authRole",
+      "AuthRoleName": "amplify-notesappclient-dev-94157-authRole",
+      "UnauthRoleArn": "arn:aws:iam::568855711594:role/amplify-notesappclient-dev-94157-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::568855711594:role/amplify-notesappclient-dev-94157-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-notesapp-dev-91036-deployment",
-      "UnauthRoleName": "amplify-notesapp-dev-91036-unauthRole",
-      "StackName": "amplify-notesapp-dev-91036",
-      "StackId": "arn:aws:cloudformation:us-east-1:568855711594:stack/amplify-notesapp-dev-91036/b2599d60-d76c-11ec-97fa-0aef8114d32d",
-      "AmplifyAppId": "dwq1gwoyingv9"
+      "DeploymentBucketName": "amplify-notesappclient-dev-94157-deployment",
+      "UnauthRoleName": "amplify-notesappclient-dev-94157-unauthRole",
+      "StackName": "amplify-notesappclient-dev-94157",
+      "StackId": "arn:aws:cloudformation:us-east-1:568855711594:stack/amplify-notesappclient-dev-94157/668f5dd0-ddba-11ec-8bdb-0e57303a2af9",
+      "AmplifyAppId": "d3jf1nlkbsx4b8"
     },
     "categories": {
       "auth": {
-        "notesapp": {}
+        "notesappclient0e443609": {}
       }
     }
   }

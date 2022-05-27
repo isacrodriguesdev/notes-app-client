@@ -6,8 +6,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Amplify, Auth } from 'aws-amplify';
 import config from './config';
 import { initSentry } from './libs/errorLib';
+import ampConfig from "./aws-exports"
 
 initSentry();
+
+// Amplify.configure(ampConfig);
 
 Amplify.configure({
   Auth: {
@@ -36,10 +39,10 @@ Amplify.configure({
 Auth.configure({
   oauth: {
     domain: 'isacrdev-notes.auth.us-east-1.amazoncognito.com',
-    scope: ['email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
-    redirectSignIn: 'https://main--isacrodriguesdev-notes.netlify.app',
-    redirectSignOut: 'https://main--isacrodriguesdev-notes.netlify.app',
-    responseType: 'token',
+    scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
+    redirectSignIn: 'http://localhost:3000',
+    redirectSignOut: 'http://localhost:3000',
+    responseType: 'code',
   },
   region: config.cognito.REGION,
   userPoolId: config.cognito.USER_POOL_ID,
@@ -47,12 +50,11 @@ Auth.configure({
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <Router>
     <App />
   </Router>
 );
 
-// https://isacrdev-notes.auth.us-east-1.amazoncognito.com/oauth2/authorize?redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&response_type=token&client_id=6gj5t94o8hjs22mo19krdgbij9&identity_provider=facebook&scope=&state=5pxkGY1bB1YMeROMQRDIG585ldzvemeM
-
-// https://-isacrdev-notes.auth.us-east-1.amazoncognito.com/oauth2/authorize?redirect_uri=localhost%3A3000&response_type=token&client_id=6gj5t94o8hjs22mo19krdgbij9&identity_provider=facebook&scope=phone%20email%20profile%20openid%20aws.cognito.signin.user.admin&state=Og4LHofc13hohRVjiJoOoNzIUB24WaXm
+// https://isacrdev-notes.auth.us-east-1.amazoncognito.com/oauth2/authorize?redirect_uri=http%3A%2F%2Flocalhost%3A3000&response_type=code&client_id=6gj5t94o8hjs22mo19krdgbij9&identity_provider=facebook&scope=phone%20email%20profile%20openid%20aws.cognito.signin.user.admin&state=8DBcr3h9vjF7gGY4tbQQIRuSadSjYoSf&code_challenge=5p52wPksV4t1ChqejmqGh8VCNNC67wj35hy7JVHgGQ4&code_challenge_method=S256

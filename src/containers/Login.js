@@ -19,7 +19,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [fields, handleFieldChange] = useFormFields({
-    email: "yatogamidev@gmail.com",
+    email: "isacrodriguesdev@protonmail.com",
     password: "4e@NAt@Z24u3z6gXAsG9T^L7XkdT="
   });
 
@@ -123,6 +123,7 @@ export default function Login() {
             try {
               await Auth.federatedSignIn({ provider: "facebook" })
             } catch (error) {
+              alert(error)
               console.log(error);
             }
           }}
