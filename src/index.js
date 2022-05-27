@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Amplify, Auth } from 'aws-amplify';
 import config from './config';
 import { initSentry } from './libs/errorLib';
-import ampConfig from "./aws-exports"
+// import ampConfig from "./aws-exports"
 
 initSentry();
 
@@ -40,8 +40,8 @@ Auth.configure({
   oauth: {
     domain: 'isacrdev-notes.auth.us-east-1.amazoncognito.com',
     scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
-    redirectSignIn: 'http://localhost:3000',
-    redirectSignOut: 'http://localhost:3000',
+    redirectSignIn: 'https://login-with-fb--isacrodriguesdev-notes.netlify.app/',
+    redirectSignOut: 'https://login-with-fb--isacrodriguesdev-notes.netlify.app/',
     responseType: 'code',
   },
   region: config.cognito.REGION,
