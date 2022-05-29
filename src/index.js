@@ -37,8 +37,8 @@ Auth.configure({
   oauth: {
     domain: 'isacrdev-notes.auth.us-east-1.amazoncognito.com',
     scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
-    redirectSignIn: 'http://localhost:3000/',
-    redirectSignOut: 'http://localhost:3000/',
+    redirectSignIn: 'https://main--isacrodriguesdev-notes.netlify.app/',
+    redirectSignOut: 'https://main--isacrodriguesdev-notes.netlify.app/',
     responseType: 'token',
   },
   region: config.cognito.REGION,
