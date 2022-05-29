@@ -20,7 +20,7 @@ export default function Login() {
 
   const [fields, handleFieldChange] = useFormFields({
     email: "isacrodriguesdev@protonmail.com",
-    password: "4e@NAt@Z24u3z6gXAsG9T^L7XkdT="
+    password: "4e@NAt@Z24u3z6gXAsG9T^L7XkdT"
   });
 
   function validateForm() {

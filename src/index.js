@@ -6,11 +6,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Amplify, Auth } from 'aws-amplify';
 import config from './config';
 import { initSentry } from './libs/errorLib';
-// import ampConfig from "./aws-exports"
 
 initSentry();
-
-// Amplify.configure(ampConfig);
 
 Amplify.configure({
   Auth: {
@@ -40,9 +37,9 @@ Auth.configure({
   oauth: {
     domain: 'isacrdev-notes.auth.us-east-1.amazoncognito.com',
     scope: ['phone', 'email', 'profile', 'openid', 'aws.cognito.signin.user.admin'],
-    redirectSignIn: 'https://login-with-fb--isacrodriguesdev-notes.netlify.app/',
-    redirectSignOut: 'https://login-with-fb--isacrodriguesdev-notes.netlify.app/',
-    responseType: 'code',
+    redirectSignIn: 'http://localhost:3000/',
+    redirectSignOut: 'http://localhost:3000/',
+    responseType: 'token',
   },
   region: config.cognito.REGION,
   userPoolId: config.cognito.USER_POOL_ID,
@@ -56,5 +53,3 @@ root.render(
     <App />
   </Router>
 );
-
-// https://isacrdev-notes.auth.us-east-1.amazoncognito.com/oauth2/authorize?redirect_uri=http%3A%2F%2Flocalhost%3A3000&response_type=code&client_id=6gj5t94o8hjs22mo19krdgbij9&identity_provider=facebook&scope=phone%20email%20profile%20openid%20aws.cognito.signin.user.admin&state=8DBcr3h9vjF7gGY4tbQQIRuSadSjYoSf&code_challenge=5p52wPksV4t1ChqejmqGh8VCNNC67wj35hy7JVHgGQ4&code_challenge_method=S256
