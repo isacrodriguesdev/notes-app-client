@@ -140,10 +140,21 @@ export default function Signup() {
           Signup
         </LoaderButton>
 
-        <FacebookButton
-          onLogin={this.handleFbLogin}
-        />
-        <hr />
+        <LoaderButton
+          onClick={async () => {
+            try {
+              await Auth.federatedSignIn({ provider: "facebook" })
+            } catch (error) {
+              alert(error)
+              console.log(error);
+            }
+          }}
+          block
+          type="button"
+          bsSize="large"
+        >
+          SignIn with facebook
+        </LoaderButton>
 
       </form>
     );

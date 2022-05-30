@@ -59,6 +59,10 @@ export default function Routes() {
         <Home />
       </AuthenticatedRoute>
 
+      <AuthenticatedRoute exact path="/home">
+        <Home />
+      </AuthenticatedRoute>
+
       <AuthenticatedRoute exact path="/notes/new">
         <NewNote />
       </AuthenticatedRoute>
